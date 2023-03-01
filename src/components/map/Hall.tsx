@@ -19,7 +19,7 @@ export function Hall({ dimensions, debug: _debug }: Props): JSX.Element {
   const opacity = 100
   return (
     <div
-      onClick={() => setDebug(true)}
+      // onClick={() => setDebug(true)}
       className="absolute print:bg-slate-500"
       style={{
         ...dimensions,

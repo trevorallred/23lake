@@ -19,10 +19,10 @@ export function Building({}: Props): JSX.Element {
         <Label name="Woodbridge High School" dimensions={{ left: 1130, top: 445, width: 400 }} rotate={90} />
       </div>
       <div>
-        <Room name="Lake Chapel" color={10} dimensions={{ left: 73, top: 345, height: 220, width: 279 }} />
-        <Room name="Woodbridge Chapel" color={100} dimensions={{ left: 818, top: 345, height: 220, width: 279 }} />
-        <Room name="Social Hall" color={40} dimensions={{ left: 671, top: 345, height: 220, width: 151 }} />
-        <Room name="Cultural Hall" color={130} dimensions={{ left: 348, top: 280, height: 350, width: 222 }} />
+        <Room name="Lake Chapel" color={10} dimensions={{ left: 73, top: 343, height: 223, width: 279 }} />
+        <Room name="Woodbridge Chapel" color={100} dimensions={{ left: 818, top: 343, height: 223, width: 279 }} />
+        <Room name="Social Hall" color={40} dimensions={{ left: 671, top: 343, height: 223, width: 151 }} />
+        <Room name="Cultural Hall" color={130} dimensions={{ left: 348, top: 267, height: 376, width: 222 }} />
         <Room name="Stage" color={180} dimensions={{ left: 566, top: 380, height: 160, width: 109 }} />
         <Room name="Lib" color={70} dimensions={{ left: 372, top: 70, height: 89, width: 63 }} />
         <Room name="9" color={250} dimensions={{ left: 348, top: 155, height: 48, width: 56 }} />
@@ -30,6 +30,17 @@ export function Building({}: Props): JSX.Element {
         <Room name="" dimensions={{ left: 400, top: 155, height: 92, width: 35 }} />
         <Room name="Primary Room" color={40} dimensions={{ left: 431, top: 165, height: 82, width: 135 }} />
         <Room name="RS Room" color={200} dimensions={{ left: 562, top: 137, height: 110, width: 115 }} />
+
+        <Room name="RS Room" color={200} dimensions={{ left: 585, top: 664, height: 117, width: 115 }} />
+        <Room name="Primary Room" color={40} dimensions={{ left: 696, top: 664, height: 87, width: 128 }} />
+        <Room name="40" color={80} dimensions={{ left: 533, top: 664, height: 87, width: 56 }} />
+        <Room name="41" color={120} dimensions={{ left: 460, top: 664, height: 87, width: 77 }} />
+        <Room
+          name="Bathrooms"
+          fontSize="sm"
+          color={160}
+          dimensions={{ left: 348, top: 664, height: 109, width: 116 }}
+        />
       </div>
       <div className="opacity-50">
         <Hall dimensions={{ left: 148, top: 70, height: 128, width: 287 }} />

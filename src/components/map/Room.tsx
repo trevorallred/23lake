@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { DivInfo } from './DivInfo'
+import { Size } from './types'
 
 type Props = {
   name?: string
   color?: number
   dimensions: Dimensions
   debug?: true
+  fontSize?: Size
 }
 
 type Dimensions = {
@@ -15,7 +17,7 @@ type Dimensions = {
   height: number
 }
 
-export function Room({ name, color, dimensions, debug: _debug }: Props): JSX.Element {
+export function Room({ name, color, dimensions, fontSize = 'lg', debug: _debug }: Props): JSX.Element {
   const [debug, setDebug] = useState(_debug === true)
   if (debug) {
     return <DivInfo dimensions={dimensions} onHide={() => setDebug(false)} />
@@ -23,12 +25,11 @@ export function Room({ name, color, dimensions, debug: _debug }: Props): JSX.Ele
 
   const lightness = 80
   const saturation = 40
-  const fontSize = getFontSize(dimensions)
   const rotate = 0
   const backgroundColor = color === undefined ? 'gray' : `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`
   return (
     <div
-      onClick={() => setDebug(true)}
+      // onClick={() => setDebug(true)}
       className="absolute border-4 border-slate-700 flex p-2 items-center justify-center z-10 leading-7"
       style={{
         ...dimensions,
@@ -39,7 +40,7 @@ export function Room({ name, color, dimensions, debug: _debug }: Props): JSX.Ele
       <p
         className="text-center"
         style={{
-          fontSize,
+          fontSize: fontSize === 'sm' ? 20 : 30,
         }}
       >
         {name}
@@ -48,6 +49,6 @@ export function Room({ name, color, dimensions, debug: _debug }: Props): JSX.Ele
   )
 }
 
-function getFontSize({ width, height }: Dimensions): number {
+function getFontSize({ width, height }: Dimensions, text?: string): number {
   return 30
 }
