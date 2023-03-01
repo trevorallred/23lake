@@ -3,18 +3,15 @@ import { ReactNode } from 'react'
 
 type Props = {
   children?: ReactNode
-  title?: string
-  user?: any
-  loading?: boolean
 }
 
-export function Layout({ children, user, loading = false, title = '23 Lake Rd, Irvine, CA' }: Props): JSX.Element {
+export function Layout({ children }: Props): JSX.Element {
   return (
     <div className="h-full w-full">
       <Head>
-        <title>{title}</title>
+        <title>23 Lake Rd, Irvine, CA</title>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />{' '}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
         <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       {children}
