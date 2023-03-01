@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@media print {
+  @page {
+    size: landscape;
+  }
+}
+
 body {
   background-color: rgb(243 244 246);
 }

@@ -1,37 +1,29 @@
+import { useState } from 'react'
+import { DivInfo } from './DivInfo'
+import { Dimensions } from './types'
+
 type Props = {
   dimensions: Dimensions
-  moving?: true
+  debug?: true
 }
 
-type Dimensions = {
-  top: number
-  left: number
-  width: number
-  height: number
-}
+export function Hall({ dimensions, debug: _debug }: Props): JSX.Element {
+  const [debug, setDebug] = useState(_debug === true)
+  if (debug) {
+    return <DivInfo dimensions={dimensions} onHide={() => setDebug(false)} />
+  }
 
-export function Hall({ dimensions, moving }: Props): JSX.Element {
   const color = 10
   const lightness = 25
   const saturation = 80
-  if (moving) {
-    return (
-      <div
-        className="absolute z-50 border-4 border-yellow-500 p-2"
-        style={{
-          ...dimensions,
-          backgroundColor: `hsla(${color}, ${saturation}%, ${lightness}%, 20%)`,
-        }}
-      ></div>
-    )
-  }
+  const opacity = 100
   return (
     <div
-      className="absolute z-0"
+      onClick={() => setDebug(true)}
+      className="absolute print:bg-slate-500"
       style={{
         ...dimensions,
-        backgroundColor: `hsla(${color}, ${saturation}%, ${lightness}%, 50%)`,
-        // transform: rotate ? `rotate(${rotate}deg)` : undefined,
+        backgroundColor: `hsla(${color}, ${saturation}%, ${lightness}%, ${opacity}%)`,
       }}
     />
   )
