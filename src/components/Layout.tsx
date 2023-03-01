@@ -8,7 +8,7 @@ type Props = {
   loading?: boolean
 }
 
-export function Layout({ children, user, loading = false, title = 'LDS Talk Translator' }: Props): JSX.Element {
+export function Layout({ children, user, loading = false, title = '23 Lake Rd, Irvine, CA' }: Props): JSX.Element {
   return (
     <div className="h-full w-full">
       <Head>
