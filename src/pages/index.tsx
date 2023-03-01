@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Layout } from '@/components'
 import { Room } from '@/components/Room'
+import Link from 'next/link'
 
 function IndexPage() {
   const saturation = 0.2
@@ -15,12 +16,12 @@ function IndexPage() {
           <img src="/blueprint.jpeg" alt="Blueprint map" style={{ width: 1200 }} />
         </div>
       </div>
-      <a
+      <Link
         href="/about"
         className="absolute bottom-0 left-0 px-4 py-1 bg-slate-700 text-white rounded-tr-xl hover:bg-slate-800"
       >
         About This Map
-      </a>
+      </Link>
     </Layout>
   )
 }

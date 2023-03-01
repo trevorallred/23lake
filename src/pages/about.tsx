@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 function AboutPage() {
   return (
     <div className="p-4 flex flex-col space-y-4">
@@ -11,7 +13,7 @@ function AboutPage() {
         <a href="https://github.com/trevorallred/23lake">https://github.com/trevorallred/23lake</a>
       </p>
       <p>
-        <a href="/print">Print This Map</a>
+        <Link href="/print">Print This Map</Link>
       </p>
     </div>
   )
