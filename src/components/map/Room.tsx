@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { isDevelopment } from '../utils'
 import { DivInfo } from './DivInfo'
 import { Size } from './types'
 
@@ -29,7 +30,7 @@ export function Room({ name, color, dimensions, fontSize = 'lg', debug: _debug }
   const backgroundColor = color === undefined ? 'gray' : `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`
   return (
     <div
-      // onClick={() => setDebug(true)}
+      onClick={() => isDevelopment() && setDebug(true)}
       className="absolute border-4 border-slate-700 flex p-2 items-center justify-center z-10 leading-7"
       style={{
         ...dimensions,

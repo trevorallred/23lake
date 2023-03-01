@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { isDevelopment } from '../utils'
 import { DivInfo } from './DivInfo'
 import { Dimensions } from './types'
 
@@ -19,7 +20,7 @@ export function Hall({ dimensions, debug: _debug }: Props): JSX.Element {
   const opacity = 100
   return (
     <div
-      // onClick={() => setDebug(true)}
+      onClick={() => isDevelopment() && setDebug(true)}
       className="absolute print:bg-slate-500"
       style={{
         ...dimensions,
