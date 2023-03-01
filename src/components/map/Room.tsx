@@ -2,8 +2,6 @@ type Props = {
   name?: string
   color?: number
   dimensions: Dimensions
-  /** the number of degrees to rotate */
-  rotate?: number
 }
 
 type Dimensions = {
@@ -13,13 +11,14 @@ type Dimensions = {
   height: number
 }
 
-export function Room({ name, color, rotate, dimensions }: Props): JSX.Element {
+export function Room({ name, color, dimensions }: Props): JSX.Element {
   // return <></>
   const lightness = 80
   const saturation = 40
+  const fontSize = getFontSize(dimensions)
   return (
     <div
-      className="absolute border-4 border-slate-700 flex p-2 items-center justify-center"
+      className="absolute border-4 border-slate-700 flex p-2 items-center justify-center z-10"
       style={{
         ...dimensions,
         backgroundColor: `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`,
@@ -29,11 +28,15 @@ export function Room({ name, color, rotate, dimensions }: Props): JSX.Element {
       <p
         className=" text-center"
         style={{
-          fontSize: 30,
+          fontSize,
         }}
       >
         {name}
       </p>
     </div>
   )
+}
+
+function getFontSize({ width, height }: Dimensions): number {
+  return 30
 }
