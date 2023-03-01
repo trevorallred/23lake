@@ -10,4 +10,5 @@ html,
 body,
 div#__next {
   height: 100%;
+  width: 100%;
 }
