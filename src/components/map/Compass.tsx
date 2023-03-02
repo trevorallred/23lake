@@ -1,6 +1,10 @@
 import Image from 'next/image'
 
-export function Compass(): JSX.Element {
+export type CompassData = {
+  rotate: number
+}
+
+export function Compass({ rotate }: CompassData): JSX.Element {
   const width = 160
   return (
     <Image
@@ -8,7 +12,7 @@ export function Compass(): JSX.Element {
       alt="compass"
       className="absolute bottom-0 right-0"
       style={{
-        rotate: '135deg',
+        rotate: `${rotate + 135}deg`,
       }}
       width={width}
       height={width}

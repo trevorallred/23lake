@@ -3,13 +3,12 @@ import { isDevelopment } from '../utils'
 import { DivInfo } from './DivInfo'
 import { Dimensions } from './types'
 
-type Props = {
+export type HallData = {
   dimensions: Dimensions
-  debug?: true
 }
 
-export function Hall({ dimensions, debug: _debug }: Props): JSX.Element {
-  const [debug, setDebug] = useState(_debug === true)
+export function Hall({ dimensions }: HallData): JSX.Element {
+  const [debug, setDebug] = useState(false)
   if (debug) {
     return <DivInfo dimensions={dimensions} onHide={() => setDebug(false)} />
   }

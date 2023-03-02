@@ -11,7 +11,7 @@ export function Layout({ children }: Props): JSX.Element {
       <Head>
         <title>23 Lake Rd, Irvine, CA</title>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
         <link rel="shortcut icon" href="/favicon.png" />
       </Head>
       {children}

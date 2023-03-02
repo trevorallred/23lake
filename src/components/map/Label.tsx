@@ -1,32 +1,44 @@
+import clsx from 'clsx'
 import { useState } from 'react'
+import { DivInfo } from './DivInfo'
 import { Dimensions } from './types'
 
-type Props = {
+export type LabelData = {
   name: string
-  rotate?: number
-  debug?: true
-  dimensions: Pick<Dimensions, 'left' | 'top' | 'width'>
+  dimensions: Dimensions
 }
 
-export function Label({ name, dimensions, rotate, debug: _debug }: Props): JSX.Element {
-  const [debug, setDebug] = useState(_debug === true)
+export function Label({ name, dimensions }: LabelData): JSX.Element {
+  const [debug, setDebug] = useState(false)
   if (debug) {
+    return <DivInfo dimensions={dimensions} onHide={() => setDebug(false)} />
   }
 
-  const { left, top, width } = dimensions
+  const { width, height } = dimensions
 
+  const rotate = height / width > 1.5
+  const length = rotate ? height : width
   return (
     <div
       onClick={() => setDebug(true)}
-      className="absolute text-center text-4xl"
+      className="absolute z-30"
       style={{
-        left: left - width / 2,
-        top: top,
-        width: width,
-        rotate: rotate === undefined ? undefined : `${rotate}deg`,
+        ...dimensions,
       }}
     >
-      {name}
+      <p
+        className={clsx([rotate && 'rotate-90', 'flex justify-center items-center'])}
+        style={{
+          fontSize: length / 10,
+          transformOrigin: 'top left',
+          width: rotate ? height : width,
+          height: rotate ? width : height,
+          position: 'relative',
+          left: rotate ? width : undefined,
+        }}
+      >
+        {name}
+      </p>
     </div>
   )
 }
