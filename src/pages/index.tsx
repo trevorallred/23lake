@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 function IndexPage() {
   const [direction, setDirection] = useState<Direction>('up')
-  const [zoom, setZoom] = useState(1)
+  const [zoom, setZoom] = useState(0.9)
   const [showScenarios, setShowScenarios] = useState(false)
   const [scenario, setScenario] = useState<Scenario>()
 
@@ -41,19 +41,6 @@ function IndexPage() {
         )}
         <div className="bg-slate-300 py-1">
           <div className="flex justify-around">
-            <Link
-              href="/about"
-              className="px-3 py-1 bg-slate-400 rounded"
-              onClick={() => {
-                if (scenario) {
-                  setScenario(undefined)
-                } else {
-                  setScenario(scenarios[0])
-                }
-              }}
-            >
-              ?
-            </Link>
             <button className="px-3 py-1 bg-slate-400 rounded" onClick={() => setShowScenarios(!showScenarios)}>
               Events
             </button>
@@ -98,6 +85,19 @@ function IndexPage() {
                 </svg>
               </button>
             </div>
+            <Link
+              href="/about"
+              className="px-3 py-1 bg-slate-400 rounded"
+              onClick={() => {
+                if (scenario) {
+                  setScenario(undefined)
+                } else {
+                  setScenario(scenarios[0])
+                }
+              }}
+            >
+              ?
+            </Link>
           </div>
         </div>
       </div>

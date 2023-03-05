@@ -3,9 +3,18 @@ import Image from 'next/image'
 
 function PrintPage(): JSX.Element {
   return (
-    <div className="print:break-inside-avoid">
+    <div className="flex flex-col space-y-4">
+      <PrintMap />
+      <PrintMap />
+    </div>
+  )
+}
+
+function PrintMap(): JSX.Element {
+  return (
+    <div className="print:break-inside-avoid" style={{ height: 700 }}>
       <div className="relative">
-        <Building direction={'up'} zoom={1} />
+        <Building direction={'up'} zoom={0.8} />
         <div className="absolute bottom-4 left-3 z-50">
           <QrCode />
         </div>
