@@ -33,7 +33,9 @@ export class Plane {
     return value * this.zoom
   }
 
-  public transform({ left, top, width, height }: Dimensions): Dimensions {
+  public transform({ left, top, bottom, right }: Dimensions): Dimensions {
+    const width = Math.max(right - left, 20)
+    const height = Math.max(bottom - top, 20)
     let newLeft = 0
     let newTop = 0
     let newWidth = this.isLandscape() ? width : height
@@ -58,8 +60,8 @@ export class Plane {
     return {
       left: newLeft * this.zoom,
       top: newTop * this.zoom,
-      width: newWidth * this.zoom,
-      height: newHeight * this.zoom,
+      right: (newLeft + newWidth) * this.zoom,
+      bottom: (newTop + newHeight) * this.zoom,
     }
   }
 

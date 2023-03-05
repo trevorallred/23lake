@@ -3,10 +3,15 @@ import Image from 'next/image'
 
 function PrintPage(): JSX.Element {
   return (
-    <div className="relative print:break-inside-avoid">
-      <Building />
-      <div className="absolute bottom-4 left-3">
-        <QrCode />
+    <div className="print:break-inside-avoid">
+      <div className="relative">
+        <Building direction={'up'} zoom={1} />
+        <div className="absolute bottom-4 left-3 z-50">
+          <QrCode />
+        </div>
+      </div>
+      <div>
+        <p className="pl-4 text-lg">Scan QR Code above for a mobile version of this map and a calendar of events.</p>
       </div>
     </div>
   )

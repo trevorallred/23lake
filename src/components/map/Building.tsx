@@ -1,5 +1,4 @@
 import { BluePrint } from './BluePrint'
-import { Compass } from './Compass'
 import { buildingData } from './data'
 import { Hall } from './Hall'
 import { Label } from './Label'
@@ -20,20 +19,12 @@ export function Building({ direction, zoom }: Props): JSX.Element {
 
   return (
     <div className="relative" style={{ width: plane.width, height: plane.height }}>
-      <div className="opacity-0">
-        <BluePrint />
-      </div>
+      <BluePrint />
       {buildingData.labels.map(({ dimensions: oldDims, ...label }) => {
         let rotation = 0
         const dimensions = plane.transform({
           ...oldDims,
         })
-        // if (plane.isNearLeft(dimensions.left)) {
-        //   rotation = -90
-        // }
-        // if (plane.isNearRight(dimensions.left)) {
-        //   rotation = 90
-        // }
         return <Label key={label.name} {...label} dimensions={dimensions} />
       })}
       {buildingData.halls.map(({ dimensions: oldDims }, index) => {
@@ -42,24 +33,8 @@ export function Building({ direction, zoom }: Props): JSX.Element {
       })}
       {buildingData.rooms.map(({ dimensions: oldDims, ...room }, index) => {
         const dimensions = plane.transform(oldDims)
-        return <Room key={room.name ?? index} {...room} dimensions={dimensions} borderWidth={zoom * 4} />
+        return <Room key={room.id ?? room.name ?? index} {...room} dimensions={dimensions} zoom={zoom} />
       })}
-
-      <Compass rotate={getRotation(direction)} />
     </div>
   )
-}
-
-// Scenarios
-// English Class in Russian - Урок английского языка
-// English Class in Farsi - کلاس انگلیسی
-// English Class in Korean 영어 클래스
-// Woodbridge First Ward
-// Woodbridge Second Ward
-
-function getRotation(direction: Direction): number {
-  if (direction === 'down') return 180
-  if (direction === 'right') return -90
-  if (direction === 'left') return 90
-  return 0
 }

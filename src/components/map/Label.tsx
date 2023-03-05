@@ -1,6 +1,5 @@
 import clsx from 'clsx'
-import { useState } from 'react'
-import { DivInfo } from './DivInfo'
+import { BorderDiv } from './BorderDiv'
 import { Dimensions } from './types'
 
 export type LabelData = {
@@ -9,36 +8,31 @@ export type LabelData = {
 }
 
 export function Label({ name, dimensions }: LabelData): JSX.Element {
-  const [debug, setDebug] = useState(false)
-  if (debug) {
-    return <DivInfo dimensions={dimensions} onHide={() => setDebug(false)} />
-  }
-
-  const { width, height } = dimensions
+  const { left, right, top, bottom } = dimensions
+  const width = right - left
+  const height = bottom - top
 
   const rotate = height / width > 1.5
   const length = rotate ? height : width
+
   return (
-    <div
-      onClick={() => setDebug(true)}
-      className="absolute z-30"
-      style={{
-        ...dimensions,
-      }}
-    >
-      <p
-        className={clsx([rotate && 'rotate-90', 'flex justify-center items-center'])}
-        style={{
-          fontSize: length / 10,
-          transformOrigin: 'top left',
-          width: rotate ? height : width,
-          height: rotate ? width : height,
-          position: 'relative',
-          left: rotate ? width : undefined,
-        }}
-      >
-        {name}
-      </p>
-    </div>
+    <BorderDiv dimensions={dimensions}>
+      <div className="w-full h-full z-30">
+        <p
+          className={clsx([rotate && 'rotate-90', 'flex justify-center items-center'])}
+          style={{
+            // backgroundColor: 'goldenrod',
+            fontSize: length / 10,
+            transformOrigin: 'top left',
+            width: rotate ? height : width,
+            height: rotate ? width : height,
+            position: 'relative',
+            left: rotate ? width : undefined,
+          }}
+        >
+          {name}
+        </p>
+      </div>
+    </BorderDiv>
   )
 }

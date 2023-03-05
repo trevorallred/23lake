@@ -5,8 +5,8 @@ import { RoomData } from './Room'
 export type Dimensions = {
   top: number
   left: number
-  width: number
-  height: number
+  right: number
+  bottom: number
 }
 
 export type Size = 'sm' | 'lg'

@@ -1,63 +1,54 @@
-import { useState } from 'react'
-import { isDevelopment } from '../utils'
-import { DivInfo } from './DivInfo'
-import { Dimensions, Size } from './types'
+import { BorderDiv } from './BorderDiv'
+import { Dimensions } from './types'
 
 export type RoomData = {
+  id?: string
   name?: string
   color?: number
   dimensions: Dimensions
-  fontSize?: Size
 }
 
 export function Room({
   name,
   color,
   dimensions,
-  borderWidth,
-  fontSize: fontSize,
+  zoom,
 }: RoomData & {
-  borderWidth: number
+  zoom: number
 }): JSX.Element {
-  const [debug, setDebug] = useState(false)
-  if (debug) {
-    return <DivInfo dimensions={dimensions} onHide={() => setDebug(false)} />
-  }
-
-  let fontSizePt = getFontSize(name, dimensions)
-  if (fontSize === 'lg') fontSizePt *= 1.5
-
   const lightness = 80
   const saturation = 40
   const rotate = 0
   const backgroundColor = color === undefined ? 'gray' : `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`
+  function getFontSize(): number {
+    if (!name) return 0
+    const maxLength = Math.max(...name.split(' ').map((val) => val.length))
+
+    const { left, right } = dimensions
+    const width = right - left
+    const widthPerChar = width / maxLength
+
+    console.info(widthPerChar)
+    if (widthPerChar < 10) return zoom * 15
+    if (widthPerChar < 15) return zoom * 20
+    return zoom * 30
+  }
+
   return (
-    <div
-      onClick={() => isDevelopment() && setDebug(true)}
-      className="absolute border-slate-700 flex p-2 items-center justify-center z-10"
-      style={{
-        ...dimensions,
-        borderWidth,
-        backgroundColor,
-        lineHeight: fontSize,
-        transform: rotate ? `rotate(${rotate}deg)` : undefined,
-      }}
-    >
-      <p
-        className="text-center"
+    <BorderDiv dimensions={dimensions} borderWidth={zoom * 4}>
+      <div
+        className="printBackground flex h-full p-2 items-center justify-center"
         style={{
-          fontSize: fontSizePt,
+          printColorAdjust: 'exact',
+          backgroundColor,
+          lineHeight: zoom * 1,
+          transform: rotate ? `rotate(${rotate}deg)` : undefined,
         }}
       >
-        {name}
-      </p>
-    </div>
+        <p className="text-center" style={{ fontSize: getFontSize() }}>
+          {name}
+        </p>
+      </div>
+    </BorderDiv>
   )
-}
-
-function getFontSize(text: string | undefined, { width }: Dimensions): number {
-  if (!text) return 0
-  const maxLength = Math.max(...text.split(' ').map((val) => val.length))
-
-  return width / maxLength
 }
