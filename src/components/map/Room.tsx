@@ -13,13 +13,21 @@ export function Room({
   color,
   dimensions,
   zoom,
+  selected,
 }: RoomData & {
   zoom: number
+  selected?: boolean
 }): JSX.Element {
   const lightness = 80
-  const saturation = 40
+  const saturation = 50
   const rotate = 0
-  const backgroundColor = color === undefined ? 'gray' : `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`
+  function getBgColor(): string {
+    if (selected === undefined || selected) {
+      if (color) return `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`
+    }
+    if (selected) return 'blue'
+    return 'gray'
+  }
   function getFontSize(): number {
     if (!name) return 0
     const maxLength = Math.max(...name.split(' ').map((val) => val.length))
@@ -28,7 +36,6 @@ export function Room({
     const width = right - left
     const widthPerChar = width / maxLength
 
-    console.info(widthPerChar)
     if (widthPerChar < 10) return zoom * 15
     if (widthPerChar < 15) return zoom * 20
     return zoom * 30
@@ -40,7 +47,7 @@ export function Room({
         className="printBackground flex h-full p-2 items-center justify-center"
         style={{
           printColorAdjust: 'exact',
-          backgroundColor,
+          backgroundColor: getBgColor(),
           lineHeight: zoom * 1,
           transform: rotate ? `rotate(${rotate}deg)` : undefined,
         }}

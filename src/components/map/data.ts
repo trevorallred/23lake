@@ -1,4 +1,4 @@
-import { BuildingData } from './types'
+import { BuildingData, Scenario } from './types'
 
 let _color = 0
 function color(): number {
@@ -92,3 +92,51 @@ export const buildingData: BuildingData = {
     { dimensions: { left: 792, top: 717, bottom: 850, right: 1019 } },
   ],
 }
+
+export const scenarios: Scenario[] = [
+  {
+    name: 'Woodbridge 1st Ward Sacrament',
+    day: 'Sun',
+    hour: '9:00 am',
+    notes: 'English + Russian',
+    rooms: ['Woodbridge Chapel'],
+  },
+  {
+    name: 'Woodbridge 2nd Ward Sacrament',
+    day: 'Sun',
+    hour: '9:30 am',
+    notes: 'English + Korean',
+    rooms: ['Lake Chapel'],
+  },
+  {
+    name: 'English for Russian Speakers',
+    day: 'Sun',
+    hour: '11:15 pm',
+    rooms: ['22', '23', '24'],
+  },
+  {
+    name: 'English for Farsi Speakers',
+    day: 'Tue',
+    hour: '7:00 pm',
+    rooms: ['Creekside RS Room'],
+  },
+  {
+    name: 'English for Korean Speakers',
+    day: 'Wed',
+    hour: '7:00 pm',
+    rooms: ['Creekside RS Room'],
+  },
+  {
+    name: 'English for Russian Speakers',
+    day: 'Thu',
+    hour: '7:00 pm',
+    rooms: ['Creekside RS Room'],
+  },
+]
+
+// Scenarios
+// English Class in Russian - Урок английского языка
+// English Class in Farsi - کلاس انگلیسی
+// English Class in Korean 영어 클래스
+// Woodbridge First Ward
+// Woodbridge Second Ward

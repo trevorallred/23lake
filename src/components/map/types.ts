@@ -18,3 +18,13 @@ export type BuildingData = {
 }
 
 export type Direction = 'up' | 'down' | 'left' | 'right'
+
+export type Scenario = {
+  name: string
+  day: WeekDay
+  hour: string
+  notes?: string
+  rooms: string[]
+}
+
+export type WeekDay = 'Sun' | 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat'

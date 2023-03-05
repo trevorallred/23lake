@@ -6,12 +6,12 @@ export type HallData = {
 }
 
 export function Hall({ dimensions }: HallData): JSX.Element {
-  const color = 10
-  const lightness = 25
-  const saturation = 80
+  const color = 230
+  const lightness = 50
+  const saturation = 20
   const opacity = 100
   return (
-    <BorderDiv dimensions={dimensions} borderWidth={1} className="">
+    <BorderDiv dimensions={dimensions} borderWidth={0} className="">
       <div
         className="printBackground w-full h-full print:bg-slate-500"
         style={{

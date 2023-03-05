@@ -1,23 +1,62 @@
-import { Building, Compass, Direction, Layout } from '@/components'
+import { Building, Compass, Direction, Layout, Scenario, scenarios } from '@/components'
 import Link from 'next/link'
 import { useState } from 'react'
 
 function IndexPage() {
   const [direction, setDirection] = useState<Direction>('up')
   const [zoom, setZoom] = useState(1)
+  const [showScenarios, setShowScenarios] = useState(false)
+  const [scenario, setScenario] = useState<Scenario>()
+
+  function pick(scenario: Scenario | undefined) {
+    setScenario(scenario)
+    setShowScenarios(false)
+  }
+
   return (
     <Layout>
       <div className="flex flex-col h-full">
         <div className="flex-1 relative overflow-auto">
-          <Building direction={direction} zoom={zoom} />
+          <Building direction={direction} zoom={zoom} scenario={scenario} />
           <Compass direction={direction} zoom={zoom} />
         </div>
+        {showScenarios && (
+          <div className="grid grid-cols-2 space-x-2 space-y-2 justify-around bg-green-800 p-2">
+            <button className="bg-slate-300 rounded-lg p-1" onClick={() => pick(undefined)}>
+              Clear
+            </button>
+            {scenarios.map((s) => {
+              return (
+                <button key={s.name} onClick={() => pick(s)} className="bg-slate-300 rounded-lg p-1">
+                  <div>
+                    <p>{s.name}</p>
+                    <p>
+                      {s.day} {s.hour} {s.notes}
+                    </p>
+                  </div>
+                </button>
+              )
+            })}
+          </div>
+        )}
         <div className="bg-slate-300 py-1">
           <div className="flex justify-around">
-            <Link href="/about" className="">
-              About
+            <Link
+              href="/about"
+              className="px-3 py-1 bg-slate-400 rounded"
+              onClick={() => {
+                if (scenario) {
+                  setScenario(undefined)
+                } else {
+                  setScenario(scenarios[0])
+                }
+              }}
+            >
+              ?
             </Link>
-            <p>Calendar</p>
+            <button className="px-3 py-1 bg-slate-400 rounded" onClick={() => setShowScenarios(!showScenarios)}>
+              Events
+            </button>
             <div className="flex space-x-1 items-center">
               <button
                 className="px-3 py-1 bg-slate-400 rounded"
@@ -66,12 +105,9 @@ function IndexPage() {
   )
 }
 
-// Scenarios
-// English Class in Russian - Урок английского языка
-// English Class in Farsi - کلاس انگلیسی
-// English Class in Korean 영어 클래스
-// Woodbridge First Ward
-// Woodbridge Second Ward
+// function hourStr(hour: number): string {
+//   return `${Math.floor(hour)}:${60 * (hour % 1)} ${hour < 12 ? 'am' : 'pm'}`
+// }
 
 function getNext(direction: Direction): Direction {
   if (direction === 'up') return 'left'
