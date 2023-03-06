@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 function IndexPage() {
   const [direction, setDirection] = useState<Direction>('up')
-  const [zoom, setZoom] = useState(0.9)
+  const [zoom, setZoom] = useState(1)
   const [showScenarios, setShowScenarios] = useState(false)
   const [scenario, setScenario] = useState<Scenario>()
 

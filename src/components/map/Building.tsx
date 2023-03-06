@@ -1,4 +1,3 @@
-import { BluePrint } from './BluePrint'
 import { buildingData } from './data'
 import { Hall } from './Hall'
 import { Label } from './Label'
@@ -13,14 +12,13 @@ type Props = {
 }
 
 const originalWidth = 1178
-const originalHeight = 870
+const originalHeight = 1090
 
 export function Building({ direction, zoom, scenario }: Props): JSX.Element {
   const plane = new Plane({ direction, zoom, width: originalWidth, height: originalHeight })
 
   return (
     <div className="relative" style={{ width: plane.width, height: plane.height }}>
-      <BluePrint />
       {buildingData.labels.map(({ dimensions: oldDims, ...label }) => {
         let rotation = 0
         const dimensions = plane.transform({

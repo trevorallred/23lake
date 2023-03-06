@@ -52,7 +52,7 @@ export function Room({
           transform: rotate ? `rotate(${rotate}deg)` : undefined,
         }}
       >
-        <p className="text-center" style={{ fontSize: getFontSize() }}>
+        <p className="text-center" style={{ fontSize: getFontSize(), lineHeight: 1 }}>
           {name}
         </p>
       </div>
