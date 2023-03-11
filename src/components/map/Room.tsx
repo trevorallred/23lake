@@ -1,4 +1,3 @@
-import { BorderDiv } from './BorderDiv'
 import { Dimensions } from './types'
 
 export type RoomData = {
@@ -12,15 +11,12 @@ export function Room({
   name,
   color,
   dimensions,
-  zoom,
   selected,
 }: RoomData & {
-  zoom: number
   selected?: boolean
 }): JSX.Element {
   const lightness = 80
   const saturation = 50
-  const rotate = 0
   function getBgColor(): string {
     if (selected === undefined || selected) {
       if (color) return `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`
@@ -36,26 +32,31 @@ export function Room({
     const width = right - left
     const widthPerChar = width / maxLength
 
-    if (widthPerChar < 10) return zoom * 15
-    if (widthPerChar < 15) return zoom * 20
-    return zoom * 30
+    if (widthPerChar < 10) return 15
+    if (widthPerChar < 15) return 20
+    return 30
   }
 
+  const { left, top, bottom, right } = dimensions
+  const height = bottom - top
+  const width = right - left
+
   return (
-    <BorderDiv dimensions={dimensions} borderWidth={zoom * 4}>
-      <div
-        className="printBackground flex h-full p-2 items-center justify-center"
-        style={{
-          printColorAdjust: 'exact',
-          backgroundColor: getBgColor(),
-          lineHeight: zoom * 1,
-          transform: rotate ? `rotate(${rotate}deg)` : undefined,
-        }}
-      >
-        <p className="text-center" style={{ fontSize: getFontSize(), lineHeight: 1 }}>
-          {name}
-        </p>
-      </div>
-    </BorderDiv>
+    <g>
+      <rect x={left} y={top} width={width} height={height} fill={getBgColor()} stroke="#666666" strokeWidth={4} />
+      <foreignObject x={left} y={top} width={width} height={height}>
+        <div className="flex justify-center items-center h-full">
+          <p
+            style={{
+              textAlign: 'center',
+              lineHeight: 1,
+              fontSize: getFontSize(),
+            }}
+          >
+            {name}
+          </p>
+        </div>
+      </foreignObject>
+    </g>
   )
 }

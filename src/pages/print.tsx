@@ -12,15 +12,22 @@ function PrintPage(): JSX.Element {
 
 function PrintMap(): JSX.Element {
   return (
-    <div className="print:break-inside-avoid" style={{ height: 700 }}>
-      <div className="relative">
+    <div className="print:break-inside-avoid" style={{ height: 730 }}>
+      <div className="relative pl-20 h-full">
         <Building direction={'up'} zoom={0.8} />
-        <div className="absolute bottom-4 left-3 z-50">
+        <div className="absolute bottom-0 left-3 z-50" style={{ width: 190 }}>
+          <Image src="/arrow.png" alt="arrow" width={100} height={100} className="rotate-90" />
           <QrCode />
+          <div className="">
+            <p className="text-xl">Scan for more info!</p>
+            <div className="flex flex-wrap space-x-3">
+              <p className="text-xl">扫描</p>
+              <p className="text-xl">Сканировать</p>
+              <p className="text-xl">주사</p>
+              <p className="text-xl">اسکن کنید</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <p className="pl-4 text-lg">Scan QR Code above for a mobile version of this map and a calendar of events.</p>
       </div>
     </div>
   )

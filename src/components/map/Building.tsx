@@ -1,47 +1,32 @@
 import { buildingData } from './data'
 import { Hall } from './Hall'
 import { Label } from './Label'
-import { Plane } from './plane'
-import { Room } from './Room'
-import { Direction, Scenario } from './types'
+import { Room, RoomData } from './Room'
+import { Scenario } from './types'
 
 type Props = {
-  direction: Direction
-  zoom: number
   scenario?: Scenario
 }
 
-const originalWidth = 1178
-const originalHeight = 1090
-
-export function Building({ direction, zoom, scenario }: Props): JSX.Element {
-  const plane = new Plane({ direction, zoom, width: originalWidth, height: originalHeight })
+export function Building({ scenario }: Props): JSX.Element {
+  function isSelected(room: RoomData): boolean | undefined {
+    if (!scenario) return undefined
+    const selected = scenario.rooms.find((r) => r === room.name)
+    return !!selected
+  }
 
   return (
-    <div className="relative" style={{ width: plane.width, height: plane.height }}>
-      {buildingData.labels.map(({ dimensions: oldDims, ...label }) => {
-        let rotation = 0
-        const dimensions = plane.transform({
-          ...oldDims,
-        })
-        return <Label key={label.name} {...label} dimensions={dimensions} />
+    <svg width="1178" height="900">
+      {buildingData.halls.map((item, index) => {
+        return <Hall key={index} {...item} />
       })}
-      {buildingData.halls.map(({ dimensions: oldDims }, index) => {
-        const dimensions = plane.transform(oldDims)
-        return <Hall key={index} dimensions={dimensions} />
+      {buildingData.rooms.map((item, index) => {
+        const key = item.id ?? item.name ?? index
+        return <Room key={key} {...item} selected={isSelected(item)} />
       })}
-      {buildingData.rooms.map(({ dimensions: oldDims, ...room }, index) => {
-        let selected: boolean | undefined = undefined
-        if (scenario) {
-          const found = scenario.rooms.find((r) => r === room.name)
-          selected = !!found
-        }
-
-        const dimensions = plane.transform(oldDims)
-        return (
-          <Room key={room.id ?? room.name ?? index} {...room} dimensions={dimensions} zoom={zoom} selected={selected} />
-        )
-      })}
-    </div>
+      {buildingData.labels.map((item) => (
+        <Label key={item.name} {...item} />
+      ))}
+    </svg>
   )
 }

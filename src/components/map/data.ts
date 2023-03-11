@@ -10,19 +10,21 @@ export const buildingData: BuildingData = {
   labels: [
     {
       name: 'Ocean Side',
-      dimensions: { left: 444, top: 70, right: 444 + 300, bottom: 70 + 50 },
+      dimensions: { left: 444, top: 70 },
     },
     {
       name: 'Creek Side',
-      dimensions: { left: 480, top: 795, right: 480 + 300, bottom: 50 + 795 },
+      dimensions: { left: 480, top: 795 },
     },
     {
       name: 'Lake Rd',
-      dimensions: { left: 14, top: 310, right: 14 + 50, bottom: 310 + 300 },
+      dimensions: { left: 14, top: 310 },
+      rotate: -90,
     },
     {
       name: 'Woodbridge HS',
-      dimensions: { left: 1105, top: 310, right: 1105 + 50, bottom: 310 + 300 },
+      dimensions: { left: 1105, top: 310 },
+      rotate: 90,
     },
   ],
   rooms: [

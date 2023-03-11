@@ -1,38 +1,46 @@
 import clsx from 'clsx'
-import { BorderDiv } from './BorderDiv'
 import { Dimensions } from './types'
 
 export type LabelData = {
   name: string
-  dimensions: Dimensions
+  dimensions: Pick<Dimensions, 'top' | 'left'>
+  rotate?: 90 | -90
 }
 
-export function Label({ name, dimensions }: LabelData): JSX.Element {
-  const { left, right, top, bottom } = dimensions
-  const width = right - left
-  const height = bottom - top
+export function Label({ name, dimensions, rotate }: LabelData): JSX.Element {
+  const { left, top } = dimensions
+  const width = rotate === undefined ? 300 : 50
+  const height = rotate === undefined ? 50 : 300
 
-  const rotate = height / width > 1.5
-  const length = rotate ? height : width
+  let transform = undefined
+  if (rotate === 90) {
+    transform = 'translateX(-50%) translateY(-50%) rotate(-90deg);'
+  }
+  if (rotate === -90) {
+    transform = 'translateX(-50%) translateY(-50%) rotate(-90deg);'
+  }
 
   return (
-    <BorderDiv dimensions={dimensions}>
-      <div className="w-full h-full z-30">
-        <p
-          className={clsx([rotate && 'rotate-90', 'flex justify-center items-center'])}
-          style={{
-            // backgroundColor: 'goldenrod',
-            fontSize: length / 10,
-            transformOrigin: 'top left',
-            width: rotate ? height : width,
-            height: rotate ? width : height,
-            position: 'relative',
-            left: rotate ? width : undefined,
-          }}
-        >
-          {name}
-        </p>
-      </div>
-    </BorderDiv>
+    <foreignObject x={left} y={top} width={width} height={height}>
+      {transform ? (
+        <div>
+          <p
+            className={clsx(['whitespace-nowrap absolute'])}
+            style={{
+              top: '50%',
+              left: '50%',
+              transform,
+              fontSize: 25,
+            }}
+          >
+            {name}
+          </p>
+        </div>
+      ) : (
+        <div className="flex h-full items-center justify-center">
+          <p className="text-2xl">{name}</p>
+        </div>
+      )}
+    </foreignObject>
   )
 }
