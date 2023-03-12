@@ -14,7 +14,7 @@ function PrintMap(): JSX.Element {
   return (
     <div className="print:break-inside-avoid" style={{ height: 730 }}>
       <div className="relative pl-20 h-full">
-        <Building direction={'up'} zoom={0.8} />
+        <Building />
         <div className="absolute bottom-0 left-3 z-50" style={{ width: 190 }}>
           <Image src="/arrow.png" alt="arrow" width={100} height={100} className="rotate-90" />
           <QrCode />
