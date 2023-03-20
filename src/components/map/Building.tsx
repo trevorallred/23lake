@@ -4,11 +4,11 @@ import { Label } from './Label'
 import { Room, RoomData } from './Room'
 import { Scenario } from './types'
 
-type Props = {
+export type BuildingProps = {
   scenario?: Scenario
 }
 
-export function Building({ scenario }: Props): JSX.Element {
+export function Building({ scenario }: BuildingProps): JSX.Element {
   function isSelected(room: RoomData): boolean | undefined {
     if (!scenario) return undefined
     const selected = scenario.rooms.find((r) => r === room.name)
@@ -16,7 +16,7 @@ export function Building({ scenario }: Props): JSX.Element {
   }
 
   return (
-    <svg width="1178" height="900">
+    <svg width={1178} height={900}>
       {buildingData.halls.map((item, index) => {
         return <Hall key={index} {...item} />
       })}

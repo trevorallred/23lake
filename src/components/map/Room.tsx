@@ -5,13 +5,17 @@ export type RoomData = {
   name?: string
   color?: number
   dimensions: Dimensions
+  fontSize?: FontSize
 }
+
+export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export function Room({
   name,
   color,
   dimensions,
   selected,
+  fontSize,
 }: RoomData & {
   selected?: boolean
 }): JSX.Element {
@@ -26,15 +30,30 @@ export function Room({
   }
   function getFontSize(): number {
     if (!name) return 0
+    if (fontSize) {
+      switch (fontSize) {
+        case 'xs':
+          return 10
+        case 'sm':
+          return 15
+        case 'md':
+          return 18
+        case 'lg':
+          return 20
+        case 'xl':
+          return 25
+      }
+    }
     const maxLength = Math.max(...name.split(' ').map((val) => val.length))
 
     const { left, right } = dimensions
     const width = right - left
     const widthPerChar = width / maxLength
 
-    if (widthPerChar < 10) return 15
-    if (widthPerChar < 15) return 20
-    return 30
+    if (widthPerChar < 10) return 10
+    if (widthPerChar < 18) return 17
+    if (widthPerChar < 27) return 20
+    return 25
   }
 
   const { left, top, bottom, right } = dimensions

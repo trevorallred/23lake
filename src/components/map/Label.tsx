@@ -14,10 +14,10 @@ export function Label({ name, dimensions, rotate }: LabelData): JSX.Element {
 
   let transform = undefined
   if (rotate === 90) {
-    transform = 'translateX(-50%) translateY(-50%) rotate(-90deg);'
+    transform = 'translateX(-50%) translateY(-50%) rotate(-90deg)'
   }
   if (rotate === -90) {
-    transform = 'translateX(-50%) translateY(-50%) rotate(-90deg);'
+    transform = 'translateX(-50%) translateY(-50%) rotate(-90deg)'
   }
 
   return (
