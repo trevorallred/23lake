@@ -20,7 +20,7 @@ export function Room({
   selected?: boolean
 }): JSX.Element {
   const lightness = 80
-  const saturation = 50
+  const saturation = 60
   function getBgColor(): string {
     if (selected === undefined || selected) {
       if (color) return `hsla(${color}, ${saturation}%, ${lightness}%, 100%)`
