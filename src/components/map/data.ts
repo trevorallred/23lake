@@ -59,6 +59,7 @@ export const buildingData: BuildingData = {
       dimensions: { left: 432, top: 167, bottom: 245, right: 563 },
     },
     {
+      id: 'rs_ocean',
       name: 'Oceanside Relief Society',
       color: Colors.Classroom,
       dimensions: { left: 563, top: 138, bottom: 245, right: 675 },
@@ -138,6 +139,7 @@ export const buildingData: BuildingData = {
     },
     { name: '40/41 Font', color: Colors.Classroom, dimensions: { left: 462, top: 666, bottom: 748, right: 588 } },
     {
+      id: 'rs_creek',
       name: 'Creekside Relief Society',
       color: Colors.Classroom,
       dimensions: { left: 588, top: 666, bottom: 778, right: 697 },
@@ -180,14 +182,21 @@ export const scenarios: Scenario[] = [
   {
     name: 'Woodbridge 1st Ward Sacrament',
     day: 'Sun',
-    hour: '9:00 am',
-    notes: 'English + Russian',
+    hour: '11:00 am',
+    notes: 'English',
     rooms: ['Woodbridge Chapel'],
+  },
+  {
+    name: 'Harvard Branch Sacrament',
+    day: 'Sun',
+    hour: '11:15 am',
+    notes: 'English',
+    rooms: ['Creekside Relief Society'],
   },
   {
     name: 'Woodbridge 2nd Ward Sacrament',
     day: 'Sun',
-    hour: '9:30 am',
+    hour: '11:30 am',
     notes: 'English + Korean',
     rooms: ['Lake Chapel'],
   },
@@ -201,19 +210,19 @@ export const scenarios: Scenario[] = [
     name: 'English for Farsi Speakers',
     day: 'Tue',
     hour: '7:00 pm',
-    rooms: ['Creekside RS Room'],
+    rooms: ['Creekside Relief Society'],
   },
   {
     name: 'English for Korean Speakers',
     day: 'Wed',
     hour: '7:00 pm',
-    rooms: ['Creekside RS Room'],
+    rooms: ['Creekside Relief Society'],
   },
   {
     name: 'English for Russian Speakers',
     day: 'Thu',
     hour: '7:00 pm',
-    rooms: ['Creekside RS Room'],
+    rooms: ['Creekside Relief Society'],
   },
 ]
 
