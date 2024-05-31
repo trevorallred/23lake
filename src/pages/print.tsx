@@ -5,7 +5,6 @@ function PrintPage(): JSX.Element {
   return (
     <div className="flex flex-col space-y-4">
       <PrintMap />
-      <PrintMap />
     </div>
   )
 }
