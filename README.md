@@ -30,4 +30,4 @@ pnpm dev
 
 This runs on Vercel.
 
-https://vercel.com/trevorallred/23lake
+https://23lake.vercel.app/
