@@ -2,10 +2,15 @@ import { Layout, Scenario, ScenarioList } from '@/components'
 import { Footer } from '@/components/Footer'
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
+import {useSearchParams} from "next/navigation";
+
 
 function IndexPage() {
+  const searchParams = useSearchParams()
   const [showScenarios, setShowScenarios] = useState(false)
   const [scenario, setScenario] = useState<Scenario>()
+
+  console.info("searchParams", searchParams)
 
   function pick(scenario: Scenario | undefined) {
     setScenario(scenario)
