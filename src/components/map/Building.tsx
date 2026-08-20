@@ -1,3 +1,5 @@
+import { JSX } from 'react'
+
 import { buildingData } from './data'
 import { Hall } from './Hall'
 import { Label } from './Label'

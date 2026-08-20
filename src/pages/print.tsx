@@ -1,5 +1,6 @@
 import { Building } from '@/components'
 import Image from 'next/image'
+import { JSX } from 'react'
 
 function PrintPage(): JSX.Element {
   return (

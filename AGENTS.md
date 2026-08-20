@@ -9,7 +9,7 @@ This is an interactive map application for The Church of Jesus Christ of Latter-
 ## Tech Stack
 
 - **Framework**: Next.js 16 (Pages Router, Turbopack enabled by default)
-- **Language**: TypeScript (strict mode)
+- **Language**: TypeScript 6.x (strict mode) — see TypeScript Notes below before bumping to a 7.x release
 - **Styling**: Tailwind CSS v4 (configured via `@theme` in `src/pages/_app.css`) with custom Satoshi font
 - **Interactive Map**: react-svg-pan-zoom for pan/zoom functionality
 - **Deployment**: Vercel (https://23lake.vercel.app/)
@@ -104,6 +104,12 @@ When a scenario is active, rooms listed in `scenario.rooms` are rendered with se
 - Adding new rooms requires updating the `buildingData.rooms` array in data.ts
 - The building has two sides: "Ocean Side" and "Creek Side" (labeled in the map)
 
+### TypeScript Notes
+
+- TypeScript is pinned to the 6.x line, not the native-compiler 7.x line. As of TS 7.0.2, `typescript-eslint` (the parser/plugin behind `eslint-config-next`'s TS linting) still declares `peerDependencies.typescript: <6.1.0` and its maintainers closed cross-tracking issues for TS7 as not planned, since TS 7.0 ships without the stable programmatic compiler API that typescript-estree depends on — installing TS7 here makes ESLint crash on startup. Re-check `npm view @typescript-eslint/eslint-plugin peerDependencies` before attempting a 7.x upgrade.
+- `tsconfig.json`'s `"types": ["node"]` is required, not optional: TypeScript 6.0 changed the default `types` array from "all installed `@types/*` packages" to `[]`, so anything relying on ambient global types (e.g. `process.env` in `src/components/utils.ts`) needs its `@types/*` package listed explicitly here.
+- Component files that annotate a return type as `JSX.Element` must `import { JSX } from 'react'`. React 19's `@types/react` no longer merges a bare global `JSX` namespace (it only lives under `React.JSX`), and TypeScript 6.0 dropped whatever back-compat behavior let the bare reference resolve anyway.
+
 ### Tailwind CSS v4 Notes
 
 - `tailwind.config.js` is now minimal; theme config lives in CSS via `@theme` in `src/pages/_app.css`.
@@ -115,3 +121,13 @@ Keep this file for knowledge useful to almost every future agent session in this
 Do not repeat what the codebase already shows; point to the authoritative file or command instead.
 Prefer rewriting or pruning existing entries over appending new ones.
 When updating this file, preserve this bar for all agents and keep entries concise.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
