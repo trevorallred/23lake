@@ -1,4 +1,5 @@
 # 23 Lake Rd, Irvine, CA
+
 https://github.com/trevorallred/23lake
 
 ## About
@@ -17,14 +18,19 @@ If you are interested in making any modifications to this, please fork [the proj
 ### Running Locally
 
 Dependencies:
-* nvm (for node)
-* pnpm (instead of npm)
+
+- nvm (for node)
+- Corepack (included with the supported Node.js release)
 
 ```
-use nvm
-pnpm install
+nvm use
+corepack enable
+pnpm install --frozen-lockfile
 pnpm dev
 ```
+
+The project pins Node.js 24.19.0 and pnpm 11.20.0. Corepack installs the
+pinned pnpm release automatically.
 
 ### Deployment
 
