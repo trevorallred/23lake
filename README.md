@@ -29,8 +29,10 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-The project pins Node.js 24.19.0 and pnpm 11.20.0. Corepack installs the
-pinned pnpm release automatically.
+The project pins local development and CI to Node.js 24.19.0 and pnpm 11.20.0.
+Corepack installs the pinned pnpm release automatically. Vercel only accepts a
+major Node.js selector, so `package.json` declares `24.x` for its runtime while
+`.nvmrc` and CI retain the exact fleet baseline.
 
 ### Deployment
 
