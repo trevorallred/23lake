@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { ReactNode } from 'react'
+import { JSX, ReactNode } from 'react'
 
 type Props = {
   children?: ReactNode

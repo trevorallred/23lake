@@ -1,3 +1,5 @@
+import { JSX } from 'react'
+
 import { Dimensions } from './types'
 
 export type HallData = {

@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { JSX } from 'react'
 
 export function BluePrint(): JSX.Element {
   const width = 1200

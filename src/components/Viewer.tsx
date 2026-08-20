@@ -1,5 +1,5 @@
 import { useWindowSize } from '@react-hook/window-size'
-import { useRef, useState } from 'react'
+import { JSX, useRef, useState } from 'react'
 import { ReactSVGPanZoom, Tool, Value } from 'react-svg-pan-zoom'
 import { Building, BuildingProps } from './map'
 
