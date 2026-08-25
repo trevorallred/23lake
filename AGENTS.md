@@ -106,7 +106,6 @@ When a scenario is active, rooms listed in `scenario.rooms` are rendered with se
 
 ### TypeScript Notes
 
-- TypeScript is pinned to the 6.x line, not the native-compiler 7.x line. As of TS 7.0.2, `typescript-eslint` (the parser/plugin behind `eslint-config-next`'s TS linting) still declares `peerDependencies.typescript: <6.1.0` and its maintainers closed cross-tracking issues for TS7 as not planned, since TS 7.0 ships without the stable programmatic compiler API that typescript-estree depends on — installing TS7 here makes ESLint crash on startup. Re-check `npm view @typescript-eslint/eslint-plugin peerDependencies` before attempting a 7.x upgrade.
 - `tsconfig.json`'s `"types": ["node"]` is required, not optional: TypeScript 6.0 changed the default `types` array from "all installed `@types/*` packages" to `[]`, so anything relying on ambient global types (e.g. `process.env` in `src/components/utils.ts`) needs its `@types/*` package listed explicitly here.
 - Component files that annotate a return type as `JSX.Element` must `import { JSX } from 'react'`. React 19's `@types/react` no longer merges a bare global `JSX` namespace (it only lives under `React.JSX`), and TypeScript 6.0 dropped whatever back-compat behavior let the bare reference resolve anyway.
 
