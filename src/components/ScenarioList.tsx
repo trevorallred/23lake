@@ -14,7 +14,12 @@ export function ScenarioList({ pick }: Props): JSX.Element {
       </button>
       {scenarios.map((s) => {
         return (
-          <button key={s.name} onClick={() => pick(s)} className="bg-slate-300 rounded-lg p-1">
+          <button
+            key={s.name}
+            aria-label={[s.name, s.day, s.hour, s.notes].filter(Boolean).join(' ')}
+            onClick={() => pick(s)}
+            className="bg-slate-300 rounded-lg p-1"
+          >
             <div>
               <p>{s.name}</p>
               <p>

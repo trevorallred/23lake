@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "jsx-a11y", "nextjs", "import"],
+  "rules": {
+    "nextjs/inline-script-id": "error",
+    "nextjs/no-assign-module-variable": "error",
+    "nextjs/no-document-import-in-page": "error",
+    "nextjs/no-duplicate-head": "error",
+    "nextjs/no-head-import-in-document": "error",
+    "nextjs/no-html-link-for-pages": "error",
+    "nextjs/no-script-component-in-head": "error",
+    "nextjs/no-sync-scripts": "error"
+  }
+}
